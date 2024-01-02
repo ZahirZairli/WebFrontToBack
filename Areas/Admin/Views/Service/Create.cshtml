@@ -1,0 +1,51 @@
+﻿@model CreateServiceVM;
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">New Service</h4>
+                <p class="card-description">
+                    Create a new service
+                </p>
+                <form class="forms-sample" enctype="multipart/form-data" method="post" action="create">
+                    <div class="form-group">
+                        <label asp-for="Name">Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Service Name">
+                        <span class="text text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description">Description</label>
+                        <input asp-for="Description" class="form-control" placeholder="Description">
+                        <span class="text text-danger" asp-validation-for="Description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price">Price</label>
+                        <input asp-for="Price" class="form-control" placeholder="Price">
+                        <span class="text text-danger" asp-validation-for="Price"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CategoryId">Category</label>
+                        <select class="form-control" asp-for="CategoryId">
+                        @foreach (Category category in Model.Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                        <span class="text text-danger" asp-validation-for="CategoryId"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Photos">Photos</label>
+                        <input asp-for="Photos" class="form-control" placeholder="Photos" accept="image/*">
+                        <span class="text text-danger" asp-validation-for="Photos"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2" asp-area="Admin" asp-controller="Service" asp-action="Create">Add</button>
+                    <a onclick="javascript:window.history.back();" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

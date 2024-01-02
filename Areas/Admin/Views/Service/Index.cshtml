@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    int a = 1;
+}
+@model ICollection<Service>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 style="display:inline;" class="card-title">Services</h4>
+            <div class="table-responsive">
+                <a class="btn btn-success text-light" asp-area="Admin" asp-controller="Service" asp-action="Create" style="float:right;">Create a new Service</a>
+                <br />
+                <br />
+                <br />
+                <table class="table table-striped text-center table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Picture
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Edit
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Service services in Model)
+                        {
+                            <tr>
+                                <th>
+                                    @a
+                                </th>
+                                <td class="py-1">
+                                    <img src="~/assets/img/@services.ServiceImages.FirstOrDefault(s=>s.IsActive).Path" alt="image" />
+                                </td>
+                                <td>
+                                    @services.Name
+                                </td>
+                                <td>
+                                    @services.Description
+                                </td>
+                                <td>
+                                    @services.Category.Name
+                                </td>
+                                <td>
+                                    @services.Price
+                                </td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" asp-controller="Service" asp-action="Detail" asp-route-id="@services.Id" asp-area="Admin"><i class="mdi mdi-account-card-details"></i> Detail</a>
+                                            <a class="dropdown-item" asp-controller="Service" asp-action="Update" asp-route-id="@services.Id" asp-area="Admin"><i class="mdi mdi-refresh"></i> Update</a>
+                                            <a class="dropdown-item" asp-controller="Service" asp-action="Delete" asp-route-id="@services.Id" asp-area="Admin"><i class="mdi mdi-delete"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            a++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

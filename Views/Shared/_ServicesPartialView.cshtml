@@ -1,0 +1,27 @@
+﻿@model List<Service>
+@foreach (Service service in Model)
+{
+    <div style="padding:5px;" class="col-xl-3 col-md-4 col-sm-6 project @service.Category.Name.ToLower().Trim()">
+        <a href="#" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+            <img class="service card-img" src="~/assets/img/@service.ServiceImages.Where(iz=>iz.IsActive).FirstOrDefault().Path" alt="Card image">
+            <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                <div class="service-work-content text-left text-light">
+                    <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">@service.Name</span>
+                    <p class="card-text">
+                        @if (service.Description.Length > 25)
+                        {
+                            @service.Description.Substring(0,25)
+                        }
+                        else
+                        {
+                            @service.Description
+                        }
+                    </p>
+                </div>
+            </div>
+        </a>
+        <div class="card-footer text-center">
+            <a class="btn btn-outline-primary" asp-controller="Basket" asp-action="AddBasket" asp-route-id="@service.Id" asp-route-ReturnUrl="@Context.Request.Path.Value"><i class="bx bx-cart bx-sm text-dark"></i></a>
+        </div>
+    </div>
+}

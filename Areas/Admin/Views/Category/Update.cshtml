@@ -1,0 +1,24 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Update";
+}
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Update the Category</h4>
+                <p class="card-description">
+                    @Model.Name
+                </p>
+                <form class="forms-sample" method="post" action="update">
+                    <div class="form-group">
+                        <label asp-for="Name">Category Name</label> 
+                        <input asp-for=Name type="text" class="form-control" placeholder="Category Name">
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2" asp-area="Admin" asp-controller="Category" asp-action="Update" asp-route-id="@Model?.Id" >Update</button>
+                    <a onclick="javascript:window.history.back();" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

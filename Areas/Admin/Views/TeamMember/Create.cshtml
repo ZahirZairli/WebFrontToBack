@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model CreateTeamMemberVM
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Team member</h4>
+                <form class="forms-sample" method="post" action="create" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Fullname">Full Name</label>
+                        <input asp-for=Fullname type="text" class="form-control" placeholder="Full Name">
+                        <span asp-validation-for="Fullname" class="text text-danger"></span>
+                        <label asp-for="Profession">Profession</label>     
+                        <input asp-for="Profession" type="text" class="form-control" placeholder="Profession"/>
+                        <span asp-validation-for="Profession" class="text text-danger"></span>
+                        <label asp-for="Photo">Photo</label>
+                        <input asp-for="Photo" class="form-control"/>
+                        <span asp-validation-for="Photo" class="text text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2" asp-area="Admin" asp-controller="TeamMember" asp-action="Create">Add</button>
+                    <a onclick="javascript:window.history.back();" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
